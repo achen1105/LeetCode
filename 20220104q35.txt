@@ -1,0 +1,37 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length - 1;
+        int mid = (low + high) / 2;
+        
+        while (low <= high)
+        {
+            mid = (low + high) / 2;
+            
+           
+            if (target < nums[mid])
+            {
+                System.out.println("1here " + mid);
+                high = mid - 1;
+            }
+            else if (target > nums[mid])
+            {
+                System.out.println("2here " + mid);
+                low = mid + 1;
+            }
+            else if (target == nums[mid])
+            {
+                System.out.println("3here " + mid);
+                return mid;
+            }
+            
+        }
+        
+        if (target > nums[mid])
+        {
+            mid++;
+        }
+        
+        return mid;
+    }
+}

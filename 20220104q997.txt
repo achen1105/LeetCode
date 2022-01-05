@@ -1,0 +1,56 @@
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+
+class Solution 
+{
+    public int findJudge(int n, int[][] trust) 
+    {
+        int judge = -1;
+        Map<Integer, ArrayList<Integer>> m = new HashMap<>();
+        Set<Integer> s = new HashSet<>();
+        
+        for (int i = 0; i < trust.length; i++)
+        {
+            s.add(trust[i][0]);
+            
+            if (m.containsKey(trust[i][1]))
+            {
+                m.get(trust[i][1]).add(trust[i][0]);
+            }
+            else
+            {
+                ArrayList<Integer> temp = new ArrayList<>();
+                temp.add(trust[i][0]);
+                m.put(trust[i][1], temp);
+            }
+        }
+        
+        for (int j = 1; j <= n; j++)
+        {
+            if (!s.contains(j) && m.containsKey(j))
+            {
+                if (m.get(j).size() == n-1)
+                {
+                    if (judge != -1)
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        judge = j;
+                    }
+                }
+            }
+        }
+        
+        if (n == 1)
+        {
+            return 1;
+        }
+        
+        return judge;
+    }
+}

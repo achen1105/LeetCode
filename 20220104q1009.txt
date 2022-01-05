@@ -1,0 +1,21 @@
+class Solution 
+{
+    public int bitwiseComplement(int n) 
+    {
+        String binN = Integer.toBinaryString(n);
+        int length = binN.length();
+        int comp = 0;
+        
+        for (char i : binN.toCharArray())
+        {
+            if (i == '0')
+            {
+                comp = comp + (int) Math.pow(2, length - 1);
+            }
+            
+            length--;
+        }
+        
+        return comp;
+    }
+}
