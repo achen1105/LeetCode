@@ -1,0 +1,33 @@
+class Solution 
+{
+    public int maxProfit(int[] prices) 
+    {
+        // put changes in an array
+        int[] changes = new int[prices.length-1];
+        
+        for (int i = 0; i < changes.length; i++)
+        {
+            changes[i] = prices[i+1] - prices[i];
+        }
+        
+        // Kadane's algorithm
+        int currSum = 0;
+        int maxSum = 0;
+        
+        for (int j = 0; j < changes.length; j++)
+        {
+            currSum = currSum + changes[j];
+            
+            if (currSum < 0)
+            {
+                currSum = 0;
+            }
+            else if (currSum > maxSum)
+            {
+                maxSum = currSum;
+            }
+        }
+        
+        return maxSum;
+    }
+}

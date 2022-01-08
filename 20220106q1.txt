@@ -1,0 +1,27 @@
+class Solution 
+{
+    public int[] twoSum(int[] nums, int target) 
+    {
+        int[] result = new int[2];
+        
+        // value, index
+        Map<Integer, Integer> m = new HashMap<>();
+        
+        for (int i = 0; i < nums.length; i++)
+        {
+            // contains the current value
+            if (m.containsKey(nums[i]))
+            {
+                result[0] = m.get(nums[i]);
+                result[1] = i;
+            }
+            // add the complement
+            else
+            {
+                m.put(target-nums[i], i);
+            }
+        }
+        
+        return result;   
+    }
+}
